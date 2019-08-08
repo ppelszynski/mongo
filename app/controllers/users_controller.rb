@@ -5,6 +5,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+
+    ids = Adress.where(city: 'Menelsko-Biała').pluck(:user_id)
+    @mb_users = User.in(_id: ids)
+
+    @m_name = User.in(name: /^M/i)
+
+    @four_name = User.in(name:  /^.{4}$/)
   end
 
   # GET /users/1
